@@ -2,10 +2,13 @@ import { useCallback, useState } from "react";
 import "./App.css";
 import { SearchInput } from "./components/SearchInput";
 import { ItemList } from "./components/ItemList";
-import { CounterButton } from "./components/CounterButton";
-
+/*
+4. **Компонент `CounterButton`**:
+    - Рендерит кнопку для увеличения счетчика.
+    - При нажатии на кнопку увеличивается состояние счетчика в родительском компоненте.
+    - Функция обновления счетчика должна быть мемоизирована с помощью `useCallback`, чтобы избежать лишних ререндеров дочерних компонентов. */
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState("");
   const [stateInput, setStateInput] = useState("");
   const handleChange = useCallback(
     (value) => {
@@ -13,7 +16,6 @@ function App() {
     },
     [setStateInput]
   );
-  const handleClick = useCallback(() => setCount((count) => count + 1), []);
   const list = [
     { id: 1, name: "Anna", age: 12, module: "React" },
     { id: 2, name: "Pavel", age: 56, module: "JavaScript" },
@@ -25,8 +27,6 @@ function App() {
     <>
       <SearchInput handleChange={handleChange} />
       <ItemList list={list} stateInput={stateInput} />
-      <p>count: {count}</p>
-      <CounterButton handleClick={handleClick} />
     </>
   );
 }

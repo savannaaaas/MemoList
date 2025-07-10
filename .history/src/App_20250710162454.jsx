@@ -5,7 +5,7 @@ import { ItemList } from "./components/ItemList";
 import { CounterButton } from "./components/CounterButton";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState("");
   const [stateInput, setStateInput] = useState("");
   const handleChange = useCallback(
     (value) => {
@@ -13,7 +13,7 @@ function App() {
     },
     [setStateInput]
   );
-  const handleClick = useCallback(() => setCount((count) => count + 1), []);
+  const handleClick = useCallback(() => setCount(() => count + 1), [count]);
   const list = [
     { id: 1, name: "Anna", age: 12, module: "React" },
     { id: 2, name: "Pavel", age: 56, module: "JavaScript" },
